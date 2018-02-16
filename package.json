@@ -1,0 +1,20 @@
+{
+  "name": "scraper1",
+  "version": "1.0.0",
+  "description": "simple rss feed scraper",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongojs": "^2.5.0",
+    "mongoose": "^5.0.4",
+    "request": "^2.83.0",
+    "rss-parser": "^3.1.1",
+    "superagent": "^3.8.2"
+  }
+}
