@@ -1,0 +1,53 @@
+
+    DustBust Fonts
+    --------------------------------------------------------------------------------
+
+    Neutron Demo truetype font
+
+    Copyright 2002 by dustBUST fonts - Andreas Nylin
+
+    This is a demo version of a commercial font. Contact me if you are intersted in
+    the real font with full character set and more weights.
+   
+    This fonts is free for all non-commercial uses. However you must 
+    inform me if you are going to use it for anything. Contact me for commercial
+    usage. You are not allowed to distribute these fonts without my permission. 
+    Contact me for permission. You may never ever sell my fonts, include them on 
+    CD's or make any changes to the files. If you use a font, please show me what 
+    you used it for.
+
+    What do I mean by commercial usage? Commercial use is if you are using my font for 
+    a product for a company
+
+    I, Andreas Nylin, will never be responsible for any damage caused by these
+    files. You use them at your own risk.
+
+
+    How to install on PC/Windows
+
+    1, Extract the .zip file with WinZip/WinRar.
+    2, Copy the font files to your windows/fonts dir.
+    3, Refresh and restart any running applications.
+
+    or
+
+    1, Extract the .zip file with WinZip/WinRar.
+    2, Open the Control Panel and then the fonts dir.
+    3, Choose File &gt; Install new font and select the fonts.
+    4, You might need to restart any running applications.
+
+
+    How to install on Mac
+
+    1, Extract the .sit archive with StuffIt Expander.
+    2, Decode the .bin files with Stuffit Expander (just drop to StuffIt Expander)
+    3, Copy the .bin files to your system fonts folder.</font>
+
+
+	/Andreas Nylin
+
+
+    E-mail: dustbustfonts@yahoo.se
+
+       WWW: http://dustbust.cjb.net 
+

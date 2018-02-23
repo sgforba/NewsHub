@@ -10,15 +10,15 @@ class Post extends Component {
           };           
         return(
             <div className={`post ${ this.props.post.source }`}>
-                <a className="thumbnail" style={thumbStyle}></a>
+                <div className="thumb-wrapper">
+                    <a className="thumbnail" style={thumbStyle}></a>
+                    <a href={this.props.post.url} className="cta-link" target="_blank">Read More</a>
+                </div>
+                <span className={`icon icon-${ this.props.post.source }`}>{ this.props.post.source }</span>
                 <a href={this.props.post.url} target="_blank" className="title">{this.props.post.title}</a>
                  <p className="content-wrapper">
-                 <span className={`icon-${ this.props.post.source }`}></span>
                  {this.props.post.content}
-                 </p>
-                 <p>
-                     <a href={this.props.post.url} className="cta-link">Read More..</a>
-                 </p>        
+                 </p>      
             </div>
         );        
     }

@@ -20,6 +20,7 @@ const app = express();
 let parser = new rssParser();
 scraper.parsefox();
 scraper.parsecnn();
+//scraper.parsenbc();
 
 
 
