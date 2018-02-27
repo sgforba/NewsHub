@@ -21,6 +21,7 @@ let parser = new rssParser();
 scraper.parsefox();
 scraper.parsecnn();
 scraper.parsenbc();
+scraper.parsebbc();
 
 
 

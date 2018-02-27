@@ -121,22 +121,63 @@ module.exports.parsenbc = function(){parser.parseURL('https://www.cnbc.com/id/10
         feedArray.push(item);
     });
 
-    // feedArray.forEach(item => {
-    //     rp(item.link)
-    //     .then( function (data) {
-    //          var $ = cheerio.load(data);
-    //          item.image = $('meta[name="twitter:image"]').attr('content');
-    //     })
-    
-    // });
 
     ///DATA CLEANING
     var feedData =  _.uniqBy(feedArray, 'articleID');
+
     //SAVE TO DB
     feedData.forEach(function(x) {
         rp(x.link).then( function(data){
             var $ = cheerio.load(data);
             x.image = $('meta[name="twitter:image"]').attr('content');          
+            if(x.contentSnippet && x.image) {
+                new Post({
+                    url: x.link,
+                    title: x.title,
+                    content: x.contentSnippet,
+                    source: x.source,
+                    id: x.articleID,
+                    timestamp: Math.round(new Date(x.pubDate).getTime()/1000),
+                    image: x.image
+                }).save(function(error, doc, next){
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        
+                    }
+                });   
+            }
+        })
+    });
+
+});
+}
+
+//BBC Scraper
+module.exports.parsebbc = function(){parser.parseURL('http://feeds.bbci.co.uk/news/rss.xml', function(err, feed) {
+
+    //SCRAPING
+    var feedArray = [];
+    feed.items.forEach(item => {
+        item.source = "bbc";
+        item.timestamp = Date(item.pubDate);
+        item.content = undefined;
+        item.articleID = item.guid.substring(item.guid.length-8, item.guid.length);  
+        console.log(item);
+        feedArray.push(item);
+    });
+
+
+    ///DATA CLEANING
+    var feedData =  _.uniqBy(feedArray, 'articleID');
+    
+    //SAVE TO DB
+    feedData.forEach(function(x) {
+        rp(x.link).then( function(data){
+
+            var $ = cheerio.load(data);
+            x.image = $('meta[property="og:image"]').attr('content');  
+                  
             if(x.contentSnippet && x.image) {
                 new Post({
                     url: x.link,
