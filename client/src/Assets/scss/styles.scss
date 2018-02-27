@@ -158,6 +158,19 @@ $breakpoints: (
                 }
             }            
         }
+        &.nbc {
+            border: 1px solid #6347b2;
+            border-top: 3px solid #6347b2;
+            border-bottom: 3px solid #6347b2;
+            .title {
+                color:#282828;
+            }
+            .cta-link {
+                &:hover {
+                   color: #6347b2;
+                }
+            }            
+        }        
         .icon {
             display: block;
             text-indent: -10000px;
@@ -177,7 +190,14 @@ $breakpoints: (
                 background-size: cover;
                 background: url('../images/cnn.svg');
                 background-repeat: no-repeat;                
-            }            
+            }  
+            &.icon-nbc {
+                height: 20px;
+                width: 40px;    
+                background-size: cover;
+                background: url('../images/nbc.svg');
+                background-repeat: no-repeat;                
+            }                        
         }
         .content-wrapper {
             font-size: 13px;
