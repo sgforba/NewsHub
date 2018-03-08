@@ -1,11 +1,14 @@
 const express = require('express');
 const request = require('request');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const path = require('path');
 const rssParser = require('rss-parser');
 const mongoose = require('mongoose');
 const _ = require('lodash');
 const scraper = require('./scraper.js')
 const cheerio = require('cheerio');
+
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 //Declare DB
 mongoose.connect('mongodb://admin:password@ds131258.mlab.com:31258/scraperdb1');
@@ -22,7 +25,11 @@ let parser = new rssParser();
 
 setInterval(scraper.scrape, 600000);
 
-
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  });
 
 //ALL GET
 app.get('/api/', function(req,res,next){
