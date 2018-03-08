@@ -15,14 +15,12 @@ var Post = require('./models/posts.js');
 
 //Declare App
 const app = express();
+const dev = app.get('env') !== 'production';
 
 //Tools
 let parser = new rssParser();
-scraper.parsefox();
-scraper.parsecnn();
-scraper.parsenbc();
-scraper.parsebbc();
 
+setInterval(scraper.scrape, 600000);
 
 
 

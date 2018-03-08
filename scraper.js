@@ -10,7 +10,7 @@ let parser = new rssParser();
 var Post = require('./models/posts.js');
 
 //Fox Scraper
-module.exports.parsefox =function(){ parser.parseURL('http://feeds.foxnews.com/foxnews/latest', function(err, feed) {
+parsefox =function(){ parser.parseURL('http://feeds.foxnews.com/foxnews/latest', function(err, feed) {
     var feedArray = [];
 
     feed.items.forEach(item => {
@@ -55,8 +55,7 @@ module.exports.parsefox =function(){ parser.parseURL('http://feeds.foxnews.com/f
 
 
 //CNN Scraper
-module.exports.parsecnn = function(){parser.parseURL('http://rss.cnn.com/rss/cnn_topstories.rss', function(err, feed) {
-    /* WHEN SCRAPING PAGE FOR IMAGE LOOK FOR <meta content="https://cdn.cnn.com/cnnnext/dam/assets/180214191628-08-florida-school-shooting-gallery-0214-super-tease.jpg" name="thumbnail"> tag*/
+parsecnn = function(){parser.parseURL('http://rss.cnn.com/rss/cnn_topstories.rss', function(err, feed) {
 
     //SCRAPING
     var feedArray = [];
@@ -108,7 +107,7 @@ module.exports.parsecnn = function(){parser.parseURL('http://rss.cnn.com/rss/cnn
 }
 
 //NBC Scraper
-module.exports.parsenbc = function(){parser.parseURL('https://www.cnbc.com/id/100003114/device/rss/rss.html', function(err, feed) {
+parsenbc = function(){parser.parseURL('https://www.cnbc.com/id/100003114/device/rss/rss.html', function(err, feed) {
 
     //SCRAPING
     var feedArray = [];
@@ -155,7 +154,7 @@ module.exports.parsenbc = function(){parser.parseURL('https://www.cnbc.com/id/10
 }
 
 //BBC Scraper
-module.exports.parsebbc = function(){parser.parseURL('http://feeds.bbci.co.uk/news/rss.xml', function(err, feed) {
+parsebbc = function(){parser.parseURL('http://feeds.bbci.co.uk/news/rss.xml', function(err, feed) {
 
     //SCRAPING
     var feedArray = [];
@@ -199,4 +198,12 @@ module.exports.parsebbc = function(){parser.parseURL('http://feeds.bbci.co.uk/ne
     });
 
 });
+}
+
+module.exports.scrape = function() {
+    parsefox();
+    parsecnn();
+    parsenbc();
+    parsebbc();
+
 }
