@@ -8,7 +8,6 @@ const _ = require('lodash');
 const scraper = require('./scraper.js')
 const cheerio = require('cheerio');
 
-app.use(express.static(path.join(__dirname, 'client/build')));
 
 //Declare DB
 mongoose.connect('mongodb://admin:password@ds131258.mlab.com:31258/scraperdb1');
@@ -19,6 +18,8 @@ var Post = require('./models/posts.js');
 //Declare App
 const app = express();
 const dev = app.get('env') !== 'production';
+
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 //Tools
 let parser = new rssParser();
