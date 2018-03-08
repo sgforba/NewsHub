@@ -14,6 +14,7 @@ class Post extends Component {
                     <a className="thumbnail" style={thumbStyle}></a>
                     <a href={this.props.post.url} className="cta-link" target="_blank">Read More</a>
                 </div>
+                <div className="date">{this.props.post.date}</div>
                 <span className={`icon icon-${ this.props.post.source }`}>{ this.props.post.source }</span>
                 <a href={this.props.post.url} target="_blank" className="title">{this.props.post.title}</a>
                  <p className="content-wrapper">
