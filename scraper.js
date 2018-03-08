@@ -16,27 +16,28 @@ module.exports.parsefox =function(){ parser.parseURL('http://feeds.foxnews.com/f
     feed.items.forEach(item => {
         var linkIndex = item.link.indexOf('~3/')+3;  
         item.source = "fox";
-        item.timestamp = Date(item.pubDate);
+        item.date = new Date(item.pubDate);
         item.content = undefined;
-        item.articleID = item.link.substring(linkIndex, linkIndex+11); 
+        item.articleID = item.categories[0]._; 
         feedArray.push(item);
+       
     });
-
     var feedData =  _.uniqBy(feedArray, 'articleID');
-
     //SAVE TO DB
     feedData.forEach(function(x) {
+        
         rp(x.guid).then( function(data){
             var $ = cheerio.load(data);
-            x.image = $('link[rel="image_src"]').attr('href');            
+            x.image = $('link[rel="image_src"]').attr('href');           
             if(x.contentSnippet && x.image) {
+                
                 new Post({
                     url: x.guid,
                     title: x.title,
                     content: x.contentSnippet,
                     source: x.source,
                     id: x.articleID,
-                    timestamp: Math.round(new Date(x.pubDate).getTime()/1000),
+                    date: x.date,
                     image: x.image
                 }).save(function(error, doc, next){
                     if (error) {
@@ -61,7 +62,7 @@ module.exports.parsecnn = function(){parser.parseURL('http://rss.cnn.com/rss/cnn
     var feedArray = [];
     feed.items.forEach(item => {
         item.source = "cnn";
-        item.timestamp = Date(item.pubDate);
+        item.date = new Date(item.pubDate);
         item.content = undefined;
         item.articleID = item.link.substring(item.link.indexOf('~3/')+3, item.link.indexOf('/index'));  
 
@@ -91,7 +92,7 @@ module.exports.parsecnn = function(){parser.parseURL('http://rss.cnn.com/rss/cnn
                     content: x.contentSnippet,
                     source: x.source,
                     id: x.articleID,
-                    timestamp: Math.round(new Date(x.pubDate).getTime()/1000),
+                    date: x.date,
                     image: x.image
                 }).save(function(error, doc, next){
                     if (error) {
@@ -114,7 +115,7 @@ module.exports.parsenbc = function(){parser.parseURL('https://www.cnbc.com/id/10
     feed.items.forEach(item => {
         
         item.source = "nbc";
-        item.timestamp = Date(item.pubDate);
+        item.date = new Date(item.pubDate);
         item.content = undefined;
         item.articleID = item.guid.substring(item.guid.indexOf('_')+1, item.guid.indexOf('_')+9);  
 
@@ -137,7 +138,7 @@ module.exports.parsenbc = function(){parser.parseURL('https://www.cnbc.com/id/10
                     content: x.contentSnippet,
                     source: x.source,
                     id: x.articleID,
-                    timestamp: Math.round(new Date(x.pubDate).getTime()/1000),
+                    date: x.date,
                     image: x.image
                 }).save(function(error, doc, next){
                     if (error) {
@@ -160,10 +161,9 @@ module.exports.parsebbc = function(){parser.parseURL('http://feeds.bbci.co.uk/ne
     var feedArray = [];
     feed.items.forEach(item => {
         item.source = "bbc";
-        item.timestamp = Date(item.pubDate);
+        item.date = new Date(item.pubDate);
         item.content = undefined;
         item.articleID = item.guid.substring(item.guid.length-8, item.guid.length);  
-        console.log(item);
         feedArray.push(item);
     });
 
@@ -185,7 +185,7 @@ module.exports.parsebbc = function(){parser.parseURL('http://feeds.bbci.co.uk/ne
                     content: x.contentSnippet,
                     source: x.source,
                     id: x.articleID,
-                    timestamp: Math.round(new Date(x.pubDate).getTime()/1000),
+                    date: x.date,
                     image: x.image
                 }).save(function(error, doc, next){
                     if (error) {

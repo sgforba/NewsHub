@@ -6,7 +6,7 @@ var PostSchema = new mongoose.Schema({
     content: { type: String, required: true },
     source: { type: String, required: true },
     id: { type: String, required: true},
-    timestamp: { type: Number, required: true},
+    date: { type: Date, required: true},
     image: {type: String}
   });
 

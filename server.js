@@ -31,11 +31,17 @@ app.get('/api/', function(req,res,next){
     
 	Post.find({}, function(err, docs) {
 		
-		var dateCheck = ((new Date().getTime() - (12 * 60 * 60 * 1000))/1000);
+		var dateOffset = (24*60*60*1000) * 1;
+		var myDate = new Date();
+		myDate.setTime(myDate.getTime() - dateOffset);
+
 		var data =  _.uniqBy(docs, 'id');
 
-		data = data.filter(x => x.timestamp > dateCheck);
-		
+		data = data.filter(x => x.date > myDate)
+		.sort(function(a,b){
+			a.date-b.date
+		});	
+
 		if(err){
 			return res.status(500).send("Couldn't run the query");
 		} else {
@@ -45,6 +51,27 @@ app.get('/api/', function(req,res,next){
 	})
 });
 
+//RECENT
+app.get('/api/recent', function(req,res,next){
+    
+	Post.find({}, function(err, docs) {
+		
+		var dateOffset = (24*60*60*1000) * 0.;
+		var myDate = new Date();
+		myDate.setTime(myDate.getTime() - dateOffset);
+
+		var data =  _.uniqBy(docs, 'id');
+
+		data = data.filter(x => x.date > myDate);
+		
+		if(err){
+			return res.status(500).send("Couldn't run the query");
+		} else {
+			res.json(data);
+		}
+		
+	})
+});
 //CNN GET
 app.get('/api/cnn', function(req,res,next){
     
