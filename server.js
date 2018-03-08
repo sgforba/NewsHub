@@ -102,6 +102,4 @@ app.get('/api/fox', function(req,res,next){
 });
 
 
-app.listen(3001, function () {
-  console.log('Example app listening on port 3001!');
-});
+app.listen(process.env.PORT || 5000)
