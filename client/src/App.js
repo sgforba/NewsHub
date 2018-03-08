@@ -17,11 +17,6 @@ class App extends Component {
       .then(res => res.json())
       .then(posts => this.setState({ posts }));
   }
-  getPosts = () => {
-    fetch('/api/')
-      .then(res => res.json())
-      .then(posts => this.setState({ posts }));
-  } 
   render(){
     return ( 
       <div className="app">
