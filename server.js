@@ -24,10 +24,9 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 //Tools
 let parser = new rssParser();
 
-setInterval(scraper.scrape, 600000);
+setInterval(scraper.scrape, 1800000);
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
+
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname+'/client/build/index.html'));
   });
