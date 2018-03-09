@@ -9,7 +9,7 @@ class Navbar extends Component {
         }
         return (
          <div className="header" >
-             NewzHub
+             NewzSpace
          </div>    
         );
       }
