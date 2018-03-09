@@ -10,7 +10,7 @@ const cheerio = require('cheerio');
 
 
 //Declare DB
-mongoose.connect('mongodb://admin:password@ds131258.mlab.com:31258/scraperdb1');
+mongoose.connect(process.env.DB_ACCESS);
 
 //Set Models
 var Post = require('./models/posts.js');
@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 let parser = new rssParser();
 
 setInterval(scraper.scrape, 1800000);
+
 
 
 app.get('/', (req, res) => {
