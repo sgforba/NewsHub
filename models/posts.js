@@ -6,8 +6,9 @@ var PostSchema = new mongoose.Schema({
     content: { type: String, required: true },
     source: { type: String, required: true },
     id: { type: String, required: true},
-    date: { type: Date, required: true},
-    image: {type: String}
+    date: { type: Date, required: true, expires: 86400},
+    image: {type: String},
+    
   });
 
 module.exports = mongoose.model('Post', PostSchema);
