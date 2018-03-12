@@ -276,6 +276,9 @@ body{
                 max-height: 90px;   
             }                                                  
         }
+        .open-modal {
+            display: none;
+        }
         .close-modal {
             display: none;
             cursor: pointer;
