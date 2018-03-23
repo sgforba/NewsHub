@@ -34,9 +34,8 @@ app.get('/', (req, res) => {
 
 //ALL GET
 app.get('/api/', function(req,res,next){
-    
 	Post.find({}, function(err, docs) {
-		
+
 		var dateOffset = (24*60*60*1000) * 1;
 		var myDate = new Date();
 		myDate.setTime(myDate.getTime() - dateOffset);
@@ -49,6 +48,7 @@ app.get('/api/', function(req,res,next){
 		});	
 
 		if(err){
+			console.log(err)
 			return res.status(500).send("Couldn't run the query");
 		} else {
 			res.json(data);
@@ -72,36 +72,6 @@ app.get('/api/recent', function(req,res,next){
 		
 		if(err){
 			return res.status(500).send("Couldn't run the query");
-		} else {
-			res.json(data);
-		}
-		
-	})
-});
-//CNN GET
-app.get('/api/cnn', function(req,res,next){
-    
-	Post.find({"source": 'cnn'}, function(err, docs) {
-
-        var data =  _.uniqBy(docs, 'id');
-		if(err){
-			return res.status(500).send("Couldn't run the query");
-		} else {
-			res.json(data);
-		}
-		
-	})
-});
-
-//FOX GET
-app.get('/api/fox', function(req,res,next){
-
-	Post.find({"source": 'fox'}, function(err, docs) {
-
-        var data =  _.uniqBy(docs, 'id');
-
-		if(err){
-			return res.status(500).send("Couldn't rum the query");
 		} else {
 			res.json(data);
 		}
