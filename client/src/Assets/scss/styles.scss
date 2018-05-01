@@ -1,4 +1,56 @@
 // =============================================================================
+// RESET
+// =============================================================================
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+// =============================================================================
 // RESPONSIVE BREAKPOINTS
 // =============================================================================
 $breakpoints: (
@@ -29,22 +81,28 @@ $breakpoints: (
 // FONTS
 // =============================================================================
 @font-face {
-    font-family: 'Crimson';
-    src: url('../fonts/crimson/Crimson-Roman.otf') format('OpenType');
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Nunito Bold';
+    src: url('../fonts/nunito/Nunito-ExtraBold.ttf') format('TrueType');
+    font-weight: bold;
+    font-style: bold;
   }
   @font-face {
-    font-family: 'Montserrat';
-    src: url('../fonts/montserrat/Montserrat-Regular.ttf') format('TrueType');
+    font-family: 'Nunito Black';
+    src: url('../fonts/nunito/Nunito-Black.ttf') format('TrueType');
+    font-weight: bold;
+    font-style: bold;
+  }
+  @font-face {
+    font-family: 'Nunito';
+    src: url('../fonts/nunito/Nunito-Regular.ttf') format('TrueType');
     font-weight: normal;
     font-style: normal;
-  }
+  } 
 // =============================================================================
 // MAIN STYLING
 // =============================================================================
 body{
-    background: #F8F8F8;
+    background: #FFF;
     &.modal {
         overflow: hidden;
         &:before{
@@ -59,16 +117,59 @@ body{
     }
 }
 .header {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
-    font-family: 'Crimson', serif;
+    font-family: 'Nunito Bold', sans-serif;
     font-weight: bold;
     font-size: 48px;
-    color: #E50000;
-
+    color: #FFF;
+    background: #01A4FB;
+    height: 80px;
+    line-height: 80px;
+    margin-bottom: 20px;
+    @include respond-to(mobile) {
+        margin-bottom: 0px;
+    } 
 }
-
+nav {
+    width: 100%;
+    margin-bottom: 20px;
+    .category-buttons {
+        width: 40%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        .button {
+            background: #fff;
+            color: #01A4FB;
+            border: 2px solid #01A4FB;
+            width: 100px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Nunito Black', sans-serif;
+            text-decoration: none;
+            &:hover {
+                color: #fff;
+                background: #01A4FB;                
+            }
+            &:active {
+                background: #33B8FF;
+                border: 2px solid #33B8FF;
+            }
+            @include respond-to(mobile) {
+                display: block;
+                width: 100%;
+            }             
+        }
+        @include respond-to(mobile) {
+            display: block;
+            width: 100%;
+        }           
+    }
+}
 .projects {
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -91,19 +192,27 @@ body{
     }         
     .post {
         width: 100%;
-        height:500px;
+        height:300px;
         border: 1px solid #555555;
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
         background: #ffffff;
         overflow: hidden; 
+        transition: border 0.5s height 1.5s;
+
         @include respond-to(desktop) {
             height: 400px;
         }
         @include respond-to(mobile) {
             height: 350px;
             margin: auto;
-        }       
+        }  
+
+        &.hidden {
+            border: 0px;
+            height: 0px;
+            display: none;
+        }     
         &.modal-true {
             position: fixed;
             top: 10%;
@@ -137,15 +246,15 @@ body{
                 left:0;
                 z-index: 100;
                 font-size: 0px;
-                font-family: 'Crimson', serif;
-                color:rgba(0,0,0,0.9);
+                font-family: 'Nunito Black', serif;
+                color:#ffffff;
                 text-transform: uppercase;
                 text-decoration: none;
                 transition: all .75s;
                 width: 100%;
                 height: 100%;
                 background:rgba(255,255,255,0.0);
-                line-height: 200px;
+                line-height: 150px;
                 text-align: center;
 
             }             
@@ -155,7 +264,7 @@ body{
                 }
                 .cta-link {
                     font-size: 20px;
-                    background:rgba(255,255,255,0.8);
+                    background:rgba(1, 164, 251, 0.9);
                 }
             }         
         }         
@@ -167,12 +276,11 @@ body{
         .title {
             display: block;
             font-size: 15px;
-            font-weight: bold;
             color:#000000;
             text-decoration: none;
             margin-bottom: 5px;
             padding: 0px 20px 0px 20px;
-            font-family: 'Crimson', serif;
+            font-family: 'Nunito', serif;
         }
         &.cnn {
             border: 1px solid #cc0000;
@@ -180,51 +288,43 @@ body{
             border-bottom: 3px solid #cc0000;
             .title {
                 color:#282828;
-            }
-            .cta-link {
-                &:hover {
-                   color: #cc0000;
-                }
-            }               
+            }              
         }
         &.fox {
             border: 1px solid #003366;
             border-top: 3px solid #003366;
             border-bottom: 3px solid #003366;
+            &.hidden {
+                border: 0px;
+                height: 0px;
+            }     
             .title {
                 color:#282828;
-            }
-            .cta-link {
-                &:hover {
-                   color: #003366;
-                }
-            }            
+            }           
         }
         &.nbc {
             border: 1px solid #6347b2;
             border-top: 3px solid #6347b2;
             border-bottom: 3px solid #6347b2;
+            &.hidden {
+                border: 0px;
+                height: 0px;
+            } 
             .title {
                 color:#282828;
-            }
-            .cta-link {
-                &:hover {
-                   color: #6347b2;
-                }
-            }            
+            }           
         }     
         &.bbc {
             border: 1px solid #e03c31;
             border-top: 3px solid #e03c31;
             border-bottom: 3px solid #e03c31;
+            &.hidden {
+                border: 0px;
+                height: 0px;
+            } 
             .title {
                 color:#282828;
-            }
-            .cta-link {
-                &:hover {
-                   color: #e03c31;
-                }
-            }            
+            }           
         }                
         .icon {
             display: block;
@@ -263,7 +363,7 @@ body{
         }
         .content-wrapper {
             font-size: 13px;
-            font-family: 'Montserrat', serif;
+            font-family: 'Nunito', serif;
             margin:0 auto;
             margin-bottom: 10px;
             padding: 0px 20px 0px 20px;
