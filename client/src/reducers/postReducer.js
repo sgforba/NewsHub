@@ -10,7 +10,8 @@ export default function(state = initialState, action) {
         case FETCH_POSTS:
             return {
                 ...state,
-                posts: action.payload
+                posts: action.payload,
+                outlets: ['bbc','cnn','fox','nbc']
             };
            
         default:

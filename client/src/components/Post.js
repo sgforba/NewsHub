@@ -26,7 +26,9 @@ class Post extends Component {
             display: 'block',
             background: `url(${this.props.post.image})`
         }  
-    
+        const postStyle = {
+            
+        }
         return(
             <div className={`post ${ this.props.post.source } modal-${ this.state.modal }`}>
                 <div className="thumb-wrapper">

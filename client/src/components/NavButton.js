@@ -5,7 +5,7 @@ class NavButton extends Component {
          
     render() {
         return (
-         <a href="#" className="button" onClick={this.props.hideCategories} data-id={`${this.props.outlet}`}>{this.props.outlet}</a>  
+         <button href="#" className={`button down button-${this.props.outlet}`} onClick={() => {this.props.hideCategories(this.props.outlet)}} data-id={`${this.props.outlet}`}>{this.props.outlet}</button>  
         );
       }
 }

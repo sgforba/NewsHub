@@ -15,6 +15,7 @@ class Navbar extends Component {
         }        
         return (
           <nav>
+            <div className="filter-title">Filter By Outlet:</div>
             <div className="category-buttons">
               {buttons}
             </div>

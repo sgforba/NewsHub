@@ -135,38 +135,52 @@ body{
 nav {
     width: 100%;
     margin-bottom: 20px;
+    .filter-title {
+        text-align: center;
+        color: #01A4FB;
+        font-size: 20px;
+        font-family: 'Nunito Black', sans-serif;
+        margin-bottom: 20px;
+    }
     .category-buttons {
-        width: 40%;
+        width: 50%;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        .button {
+
+        button {
+            box-shadow: none;
             background: #fff;
             color: #01A4FB;
             border: 2px solid #01A4FB;
-            width: 100px;
-            height: 60px;
+            width: 120px;
+            height: 70px;
             line-height: 60px;
             text-align: center;
             text-transform: uppercase;
             font-family: 'Nunito Black', sans-serif;
             text-decoration: none;
-            &:hover {
+
+            &.down {
                 color: #fff;
-                background: #01A4FB;                
-            }
-            &:active {
                 background: #33B8FF;
                 border: 2px solid #33B8FF;
             }
             @include respond-to(mobile) {
+                height: 40px;
+                line-height: 35px;
+                margin-bottom: 5px;
                 display: block;
                 width: 100%;
             }             
         }
+        @include respond-to(tablet) {
+            width: 80%;
+        }          
         @include respond-to(mobile) {
             display: block;
             width: 100%;
+            
         }           
     }
 }
